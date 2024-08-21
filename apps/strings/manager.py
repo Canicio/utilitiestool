@@ -13,7 +13,7 @@ class StringManager:
     @staticmethod
     def inject_random_alphanumeric_character(_string: str, position: int) -> str:
         StringValidator.check_string(_string)
-        StringValidator.check_position_of_string(_string, position)
+        StringValidator.check_position_of_string(_string, position, include_last_extra_position=True)
         random_alphanumeric_char = ''.join(random.choices(string.ascii_letters + string.digits, k=1))
         return '%s%s%s' % (_string[:position], random_alphanumeric_char, _string[position:])
 
@@ -32,6 +32,10 @@ class StringValidator:
             raise InfoException(ErrorCode.ERROR_CODE_INVALID_STRING)
 
     @staticmethod
-    def check_position_of_string(_string: str, position: int):
-        if position > len(_string) or position < 0:
+    def check_position_of_string(_string: str, position: int, include_last_extra_position=False):
+        if include_last_extra_position:
+            max_position = len(_string)
+        else:
+            max_position = len(_string)-1
+        if position > max_position or position < 0:
             raise InfoException(ErrorCode.ERROR_CODE_INVALID_POSITION)
