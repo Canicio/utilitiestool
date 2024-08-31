@@ -7,7 +7,7 @@ fi
 if [[ -f "./dist/utilitiestool" ]]; then
     rm -rf ./dist/utilitiestool
 fi
-venv/bin/pyinstaller -D -F -n utilitiestool -c main.py --key TdQeHy_37dpg%erN7
+.venv/bin/pyinstaller -D -F -n utilitiestool -c main.py --key TdQeHy_37dpg%erN7
 if [[ -f "/usr/local/bin/utilitiestool" ]]; then
     rm -rf /usr/local/bin/utilitiestool
 fi
